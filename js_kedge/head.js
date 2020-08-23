@@ -148,16 +148,3 @@ function updateProgressBar(step) {
 }
 
 </script>
-
-
-
-
-
-<script>
-
-setTestingMetadataValues()
-updateStepsStatus()
-
-document.getElementsByClassName("crisp-kquevr")[0].style="margin-bottom:75px !important;"
-
-</script>
