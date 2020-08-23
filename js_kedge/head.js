@@ -4,6 +4,8 @@
 
 <script>
 
+<!--Redirect if JS is disabled-->
+
 function fancyTimeFormat(duration) {
     var hrs = ~~(duration / 3600);
     var mins = ~~((duration % 3600) / 60);
@@ -88,6 +90,7 @@ function beforeEventStuff(startTime) {
   for (let i = 0; i < 6; ++i) {
    hideElement("etape_" + (i +1));
   }
+  hideElement("inter_etape")
  
   showElement("etape_0");
 }
@@ -98,14 +101,14 @@ function updateStepsStatus() {
   MemberStack.onReady.then(async function(member) {
     var metadata = await member.getMetaData();
     var timers = metadata["currentProjectTimers"];
-var now = parseInt(Date.now() /1000 | 0);
+    var now = parseInt(Date.now() /1000 | 0);
    
     if (parseInt(timers[0].split("-")[0]) > now) {
-    beforeEventStuff(parseInt(timers[0].split("-")[0]))
+      beforeEventStuff(parseInt(timers[0].split("-")[0]))
     } else if (parseInt(timers[timers.length -1].split("-")[1]) < now) {
-    afterEventStuff();
+      afterEventStuff();
     } else {
-    doStuffForCurrentStep(timers, now);
+      doStuffForCurrentStep(timers, now);
     }
   })
 }
@@ -119,15 +122,22 @@ for (let i = 0; i < 6; ++i) {
 }
 
 function doStuffForCurrentStep(timers, now) {
-hideElement("etape_0");
-for (let i = 0; i < timers.length; ++i) {
+  hideElement("etape_0");
+  hideElement("inter_etape")
+  var hasCurrentStep = false;
+  for (let i = 0; i < timers.length; ++i) {
     if ((parseInt(timers[i].split("-")[0]) < now) && (parseInt(timers[i].split("-")[1]) > now)) {
+      hasCurrentStep = true;
       timer(timers[i].split("-")[1], "decompte_etape" + (i +1));
       updateProgressBar(i +1);
       showElement("etape_" + (i +1));
     } else {
+      hasCurrentStep = hasCurrentStep || false;
       hideElement("etape_" + (i +1));
     }
+  }
+  if (!hasCurrentStep) {
+    showElement("inter_etape")
   }
 }
 
