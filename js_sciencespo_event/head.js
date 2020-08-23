@@ -88,9 +88,6 @@ function beforeEventStuff(startTime) {
   for (let i = 0; i < 6; ++i) {
    hideElement("etape_" + (i +1));
   }
-  hideElement("inter_etape")
- 
-  showElement("etape_0");
 }
 
 /////////// Update Panels on step
@@ -118,21 +115,14 @@ for (let i = 1; i < 5; ++i) {
 }
 
 function doStuffForCurrentStep(timers, now) {
-  hideElement("inter_etape")
-  var hasCurrentStep = false;
   for (let i = 0; i < timers.length; ++i) {
     if ((parseInt(timers[i].split("-")[0]) < now) && (parseInt(timers[i].split("-")[1]) > now)) {
-      hasCurrentStep = true;
       timer(timers[i].split("-")[1], "decompte_etape" + (i +1));
       updateProgressBar(i +1);
       showElement("etape_" + (i +1));
     } else {
-      hasCurrentStep = hasCurrentStep || false;
       hideElement("etape_" + (i +1));
     }
-  }
-  if (!hasCurrentStep) {
-    showElement("inter_etape")
   }
 }
 
