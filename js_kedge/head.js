@@ -1,11 +1,8 @@
-<script>
-
-<!--Redirect if JS is disabled-->
-
 <noscript>
 <meta http-equiv="refresh" content="0; url=objectif2k30.kedge.edu/enable-js" />
 </noscript>
 
+<script>
 
 function fancyTimeFormat(duration) {
     var hrs = ~~(duration / 3600);
