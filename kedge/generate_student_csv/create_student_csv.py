@@ -24,7 +24,7 @@ class Student:
         self.groupMembers.append(name)
 
     def toCSV(self):
-        return self.lastName + "," + self.firstName + "," + self.mail + "," + get_random_string(6) + "," + self.groupNumber + "," + self.language + "," + "|".join(self.groupMembers) + ",5cdf36776b1c26001793aea3"
+        return self.lastName + "," + self.firstName + "," + self.mail + "," + get_random_string(8) + "," + self.groupNumber + "," + self.language + "," + "|".join(self.groupMembers) + ",5cdf36776b1c26001793aea3"
 
 ###################################
 # File functions
