@@ -16,30 +16,15 @@ class Student:
         self.groupNumber = groupNumber
         self.language = language
         self.groupMembers = []
-        self.mentorId = -1
 
     def __str__(self):
-        return "Name: " + self.firstName + " " + self.lastName + "\nMail: " + self.mail + "\nGroup: " + self.groupNumber + "\nLanguage: " + self.language + "\nMembers: " + str(self.groupMembers) + "\nMentorId: " + str(self.mentorId)
+        return "Name: " + self.firstName + " " + self.lastName + "\nMail: " + self.mail + "\nGroup: " + self.groupNumber + "\nLanguage: " + self.language + "\nMembers: " + str(self.groupMembers)
     
     def addStudentToGroup(self, name):
         self.groupMembers.append(name)
 
     def toCSV(self):
-        return self.lastName + "," + self.firstName + "," + self.mail + "," + get_random_string(6) + "," + self.groupNumber + "," + self.language + "," + "|".join(self.groupMembers) + "," + str(self.mentorId) + ",5cdf36776b1c26001793aea3"
-
-###################################
-# Mentor class
-###################################
-class Mentor:
-    def __init__(self, lastName, firstName, language, groups, mentorId):
-        self.lastName = lastName
-        self.firstName = firstName
-        self.language = language
-        self.groups = groups
-        self.mentorId = mentorId
-
-    def __str__(self):
-        return "Name: " + self.lastName + " " + self.firstName + " Id: " + str(self.mentorId) + " Language: " + self.language
+        return self.lastName + "," + self.firstName + "," + self.mail + "," + get_random_string(6) + "," + self.groupNumber + "," + self.language + "," + "|".join(self.groupMembers) + ",5cdf36776b1c26001793aea3"
 
 ###################################
 # File functions
@@ -84,22 +69,6 @@ def create_students_array(parsed_file):
 
     return students
 
-def create_mentors_array(parsed_file):
-    mentors = []
-    mentor_id = 0
-
-    for l in parsed_file:
-        sl = l.split(",")
-        groups = []
-        groups_index = sl[3].split("-")
-        for j in range(int(groups_index[0]), int(groups_index[1]) +1):
-            groups.append(j)
-        mentors.append(Mentor(sl[0], sl[1], sl[2], groups, mentor_id))
-        
-        mentor_id += 1
-
-    return mentors
-
 def create_students_group(students_array):
     students_dictionnary = {}
 
@@ -121,15 +90,6 @@ def create_group_members_list(dict_students_by_group):
                     s.addStudentToGroup(students[j].firstName + " " + students[j].lastName)
             i += 1
 
-def assign_mentor_to_student(students_dict, mentors_array):
-    for g in students_dict:
-        i = 0
-        while i < len(mentors_array):
-            if int(g) in mentors_array[i].groups:
-                for s in students_dict.get(g):
-                    s.mentorId = mentors_array[i].mentorId
-            i += 1
-
 def print_groups_dict(groups_dict):
     print "\nGROUPS : "
     for g in groups_dict:
@@ -137,39 +97,30 @@ def print_groups_dict(groups_dict):
         for s in groups_dict.get(g):
             print(s)
 
-def print_mentors(mentors_array):
-    print "\nMENTORS : "
-    for m in mentors_array:
-        print(m)
-        print(m.groups)
-
 def show_help():
     print "How to use :\n"
-    print "python create_csv.py <students data CSV file> <mentors data CSV file>\n"
-    print "Exemple : python create_csv.py students.csv mentors.csv"
+    print "python create_csv.py <students data CSV file>\n"
+    print "Exemple : python create_csv.py students.csv"
 
 def check_arguments(argv):
-    if len(argv) < 3:
+    if len(argv) < 2:
         show_help()
         sys.exit(0)
     else:
-        main_process(argv[1], argv[2])
+        main_process(argv[1])
 
-def main_process(students_csv_file, mentors_csv_file):
+def main_process(students_csv_file):
     students_array = create_students_array(open_csv(students_csv_file))
-    mentors_array = create_mentors_array(open_csv(mentors_csv_file))
 
     dict_students_by_group = create_students_group(students_array)
     create_group_members_list(dict_students_by_group)
-
-    assign_mentor_to_student(dict_students_by_group, mentors_array)
 
     csv_string = ""
     for g in dict_students_by_group:
         for s in dict_students_by_group.get(g):
             csv_string = csv_string + "\n" + s.toCSV()
 
-    csv_string = "Prénom,Nom,Email,Password,Numéro de groupe,Langue,Membres de Groupe,Mentor,Membership ID\n" + csv_string[1:] + "\n"
+    csv_string = "Prénom,Nom,Email,Password,Numéro de groupe,Langue,Membres de Groupe,Membership ID\n" + csv_string[1:] + "\n"
     write_in_file(csv_string)
 
 ###########################
