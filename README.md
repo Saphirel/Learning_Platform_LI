@@ -2,6 +2,8 @@
 
 ## 0. Structure de l'outil
 
+> **Note :** La structure de chaque dossier (kedge ou science po) est identique.
+
 ```
 .   
 │
@@ -19,6 +21,9 @@
 │       │─  step1.csv
 │       │─  step2.csv
 │       └─  ...
+└───js_<ecole>
+│
+│
 ```
 
 - `generate_student_csv` : 
@@ -30,6 +35,7 @@
     - `logo.png` : logo en en-tête des PDFs générés.
     - `template.tex` : format des documents PDFs.
     - `steps_csv` : dossier contenant 5 fichiers CSV de test.
+- `js_<ecole>` : contient les fichiers de script pour les plateformes Webflow.
 
 
 ## 1. CSV étudiants
@@ -50,15 +56,13 @@ nom2,prenom2,mail2,langue2
 Et fourni en sortie un autre CSV au format : 
 
 ```
-Prénom,Nom,Email,Password,Numéro de groupe,Langue,Membres de Groupe,Mentor,
-Membership ID
-prenom1,nom1,password1,[1-999],langue1,membre1|membre2|membre3|...,[1-999],
-membershipId
+Prénom,Nom,Email,Password,Numéro de groupe,Langue,Membres de Groupe,Membership ID
+prenom1,nom1,password1,[1-999],langue1,membre1|membre2|membre3|...,membershipId
 ```
 
 > **Note :** La 1ière ligne est l'en-tête.
 
-> **Important :** Le mot de passe est une chaîne aléatoire de 6 caractères alphabétiques.
+> **Important :** Le mot de passe est une chaîne aléatoire de 8 caractères alphabétiques.
 
 ### 1.2 Utilisation
 
