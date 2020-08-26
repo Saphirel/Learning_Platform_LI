@@ -13,6 +13,15 @@ function fancyTimeFormat(duration) {
    
     var ret = "";
     if (hrs > 0) {
+        if (hrs > 24) {
+            var days = ~~(hrs / 24);
+            
+            /////////////////////////////////////////////////////////////
+            // ICI TU REMPLACES JOURS PAR DAYS POUR LA PAGE EN ANGLAIS //
+            /////////////////////////////////////////////////////////////
+            ret += "" + days + " jours ";
+            hrs = hrs - 24*days;
+        }
       ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
     }
    
