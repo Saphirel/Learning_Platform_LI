@@ -48,7 +48,7 @@ def open_and_split_csv(fileName):
     except IOError:
         print("Error : Invalid file.")
         sys.exit(0)
-    return file_content.split(",")
+    return file_content.split(";")
 
 def write_in_file(string):
     with open('processed_students.csv','w') as f:
