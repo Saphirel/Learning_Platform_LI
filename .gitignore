@@ -131,3 +131,9 @@ dmypy.json
 *.swp
 
 *.csv
+
+*.pdf
+
+*.zip
+
+kedge/generate_steps_pdf/.DS_Store

@@ -21,7 +21,7 @@ class Student:
         return "Name: " + self.firstName + " " + self.lastName + "\nMail: " + self.mail + "\nClass:" + self.classNumber + "\nGroup: " + str(self.groupNumber) + "\nLanguage: " + self.language + "\n"
     
     def toCSV(self):
-        return self.lastName + "," + self.firstName + "," + self.mail + "," + get_random_string(8) + "," + str(self.groupNumber +1) + self.classNumber + "," + self.language + ",<memberId>"
+        return self.lastName + "," + self.firstName + "," + self.mail + "," + get_random_string(8) + "," + str(self.groupNumber +1) + self.classNumber + "," + self.language + ",5f413f5a8bb65c000493ca9c"
 
 class Promo:
 
