@@ -137,3 +137,5 @@ dmypy.json
 *.zip
 
 kedge/generate_steps_pdf/.DS_Store
+
+kedge/bordeaux/generate_steps_pdf/.DS_Store
