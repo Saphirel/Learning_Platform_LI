@@ -127,7 +127,7 @@ function doStuffForCurrentStep(timers, now) {
       showElement("etape_" + (i +1));
     } else {
       hideElement("etape_" + (i +1));
-        hideElement("etape_5"));
+        hideElement("etape_5");
     }
   }
 }
