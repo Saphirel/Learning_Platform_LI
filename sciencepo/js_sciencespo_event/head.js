@@ -57,7 +57,7 @@ function setDefaultMetadataValues() {
   MemberStack.onReady.then(function(member) {
     var memberProgress = {
         currentProjectStep: ["1", "0", "0", "0", "0"],
-        currentProjectTimers: ["1599420668-1599649200", "1599649200-1599825600", "1599825600-1600272000", "1600272000-1600790400"],
+        currentProjectTimers: ["1601365500-1601913600", "1601913600-1603209600", "1603209600-1605891600", "1605891600-1607428800"],
         firstCo: "false"
     }
     member.updateMetaData(memberProgress)
@@ -90,8 +90,8 @@ function beforeEventStuff(startTime) {
   timer(startTime, "decompte_etape0");
   console.log("En avance")
   updateProgressBar(0);
-  for (let i = 0; i < 6; ++i) {
-   hideElement("etape_" + (i +1));
+  for (let i = 1; i < 6; ++i) {
+   hideElement("etape_" + (i));
   }
 }
 
@@ -105,6 +105,8 @@ function updateStepsStatus() {
    
     if (parseInt(timers[timers.length -1].split("-")[1]) < now) {
       afterEventStuff();
+    } else if (parseInt(timers[0].split("-")[0]) > now) {
+      beforeEventStuff();
     } else {
       doStuffForCurrentStep(timers, now);
     }
@@ -112,7 +114,7 @@ function updateStepsStatus() {
 }
 
 function afterEventStuff() {
-for (let i = 1; i < 5; ++i) {
+for (let i = 0; i < 5; ++i) {
    hideElement("etape_" + i);
   }
   showElement("etape_5");
@@ -120,6 +122,8 @@ for (let i = 1; i < 5; ++i) {
 }
 
 function doStuffForCurrentStep(timers, now) {
+    hideElement("etape_5");
+    hideElement("etape_0");
   for (let i = 0; i < timers.length; ++i) {
     if ((parseInt(timers[i].split("-")[0]) < now) && (parseInt(timers[i].split("-")[1]) > now)) {
       timer(timers[i].split("-")[1], "decompte_etape" + (i +1));
@@ -127,7 +131,6 @@ function doStuffForCurrentStep(timers, now) {
       showElement("etape_" + (i +1));
     } else {
       hideElement("etape_" + (i +1));
-        hideElement("etape_5");
     }
   }
 }
