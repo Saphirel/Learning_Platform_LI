@@ -106,7 +106,7 @@ function updateStepsStatus() {
     if (parseInt(timers[timers.length -1].split("-")[1]) < now) {
       afterEventStuff();
     } else if (parseInt(timers[0].split("-")[0]) > now) {
-      beforeEventStuff();
+      beforeEventStuff(parseInt(timers[0].split("-")[0]));
     } else {
       doStuffForCurrentStep(timers, now);
     }
