@@ -57,7 +57,7 @@ function setDefaultMetadataValues() {
   MemberStack.onReady.then(function(member) {
     var memberProgress = {
         currentProjectStep: ["1", "0", "0", "0", "0"],
-        currentProjectTimers: ["1600758900-1600763400", "1600763400-1600768800", "1600768800-1600772400", "1600772400-1600963200"],
+        currentProjectTimers: ["1602504900-1602509400", "1602509400-1602514800", "1602514800-1602518400", "1602518400-1602687600"],
         firstCo: "false"
     }
     member.updateMetaData(memberProgress)
@@ -90,7 +90,7 @@ function beforeEventStuff(startTime) {
   timer(startTime, "decompte_etape0");
   console.log("En avance")
   updateProgressBar(0);
-  for (let i = 0; i < 5; ++i) {
+  for (let i = 0; i < 6; ++i) {
     hideElement("etape_" + (i +1));
   }
 }
@@ -114,8 +114,7 @@ function updateStepsStatus() {
 }
 
 function afterEventStuff() {
-  hideElement("etape_0");
-  for (let i = 1; i < 5; ++i) {
+  for (let i = 0; i < 5; ++i) {
     hideElement("etape_" + i);
   }
   showElement("etape_5");
@@ -131,6 +130,7 @@ function doStuffForCurrentStep(timers, now) {
     } else {
       hideElement("etape_" + (i +1));
       hideElement("etape_5");
+      hideElement("etape_0");
     }
   }
 }
