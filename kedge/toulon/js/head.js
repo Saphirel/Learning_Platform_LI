@@ -90,7 +90,7 @@ function beforeEventStuff(startTime) {
   timer(startTime, "decompte_etape0");
   console.log("En avance")
   updateProgressBar(0);
-  for (let i = 0; i < 6; ++i) {
+  for (let i = 0; i < 5; ++i) {
     hideElement("etape_" + (i +1));
   }
 }
