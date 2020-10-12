@@ -57,7 +57,7 @@ function setDefaultMetadataValues() {
   MemberStack.onReady.then(function(member) {
     var memberProgress = {
         currentProjectStep: ["1", "0", "0", "0", "0"],
-        currentProjectTimers: ["1602504900-1602509400", "1602509400-1602514800", "1602514800-1602518400", "1602518400-1602687600"],
+        currentProjectTimers: ["1602504900-1602511200", "1602511200-1602514800", "1602514800-1602518400", "1602518400-1602687600"],
         firstCo: "false"
     }
     member.updateMetaData(memberProgress)
