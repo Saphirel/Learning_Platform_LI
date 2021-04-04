@@ -41,5 +41,15 @@ function editCurrentChallenge(challenge) {
   });
 }
 
+function presetForm() {
+  MemberStack.onReady.then(function(member) {   
+	  if (member.loggedIn) {
+		  document.getElementById("emailuser-2").value = member["email"]
+	  }
+  })
+
+  document.getElementById("nomcours-2").value = document.getElementsByClassName("titre-ressource")[0].innerHTML
+}
+
 setupIfFirstConnection()
 getCurrentChallenge()
