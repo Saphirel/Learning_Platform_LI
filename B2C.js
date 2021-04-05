@@ -143,7 +143,7 @@ function setOnClickListeners() {
         var tmp = items[i]
         tmp.getElementsByClassName("div-block-194")[0].addEventListener("click", function() {
             var item_id = this.parentNode.parentNode.getElementsByClassName("text-block-87")[0].innerHTML
-
+	    this.classList.add("checked")
             MemberStack.onReady.then(async function(member) {
                 var metadata = await member.getMetaData();
 
@@ -158,7 +158,6 @@ function setOnClickListeners() {
                   checkedTodoItems: todo_items
                 }
                 member.updateMetaData(data)
-		checkCheckedItems()
             })
 
         })
