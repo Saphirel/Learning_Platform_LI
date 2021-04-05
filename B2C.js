@@ -14,7 +14,6 @@ function setDefaultMetadataValues() {
   console.log("First co, setting up default values...");
   MemberStack.onReady.then(function(member) {
     var memberProgress = {
-      challenges: ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"],
       completedLessons: [],
       firstCo: "false"
     }
@@ -23,14 +22,9 @@ function setDefaultMetadataValues() {
 }
 
 function getCurrentChallenge() {
-  MemberStack.onReady.then(async function(member) {
-    var metadata = await member.getMetaData();
-    for (let i = 0; i < metadata["challenges"].length; i++) {
-      if (metadata["challenges"][i] == "1") {
-        var tmp = i + 1
-        editCurrentChallenge("Défi " + tmp)
-      }
-    }
+  MemberStack.onReady.then(function(member) {
+    var challenge_name = member["dfi-en-cours"]
+    editCurrentChallenge(challenge_name)
   })
 }
 
