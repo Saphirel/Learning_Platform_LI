@@ -62,6 +62,21 @@ function checkIfLessonCompleted() {
   })
 }
 
+function checkCompletedLessons() {
+	MemberStack.onReady.then(function(member) {   
+	  if (member.loggedIn) {
+	    var lessons = member["cours-finis"].split(", ")
+        var displayed_lessons = document.getElementsByClassName("ressource-collection-item")
+
+        for (var i = 0; i < displayed_lessons.length; ++i) {
+            if (lessons.includes(displayed_lessons[i].getElementsByClassName("cours_id")[0].innerHTML)) {
+              displayed_lessons[i].getElementsByClassName("pastille_cours_fini")[0].style.display = "block"
+            }
+        }
+	 }
+  })
+}
+
 </script>
 
 <script>
@@ -70,5 +85,6 @@ setupIfFirstConnection()
 getCurrentChallenge()
 
 checkIfLessonCompleted()
+checkCompletedLessons()
 
 </script>
