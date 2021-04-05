@@ -49,6 +49,10 @@ function presetForm() {
   document.getElementById("evalcours-2").value = document.getElementsByClassName("titre-ressource")[0].innerHTML
 }
 
+</script>
+
+<script>
+
 setupIfFirstConnection()
 getCurrentChallenge()
 
