@@ -45,8 +45,8 @@ function presetForm() {
 	  }
   })
 
-  document.getElementById("nomcours-2").value = document.getElementsByClassName("titre-ressource")[0].innerHTML
-  document.getElementById("evalcours-2").value = document.getElementsByClassName("titre-ressource")[0].innerHTML
+  document.getElementById("nomcours-2").value = document.getElementById("cours_id").innerHTML
+  document.getElementById("evalcours-2").value = document.getElementById("cours_id").innerHTML
 }
 
 </script>
