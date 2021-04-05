@@ -32,7 +32,7 @@ function editCurrentChallenge(challenge) {
   var divs = document.getElementsByClassName("display_none")
 
   Array.from(divs).forEach((div) => {
-    if (div.innerHTML.includes(challenge))
+    if (div.innerHTML.includes(challenge + "<"))
       div.style.display = "block"
   });
 }
