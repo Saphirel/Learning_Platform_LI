@@ -103,6 +103,39 @@ MemberStack.onReady.then(function(member) {
   })
 }
 
+function hideFormButton() {
+	var tmp = 0
+var i = 0
+var blocks = [2, 3, 3, 2, 2]
+var displayed_challenge_id = parseInt(document.getElementById("defi_id").innerHTML)
+
+while (blocks[i] + tmp < displayed_challenge_id) {
+  tmp += blocks[i]
+  i += 1
+}
+var displayed_challenge_block = i +1
+
+tmp = 0
+i = 0
+
+MemberStack.onReady.then(function(member) {
+    var tmp_array = member["dfi-en-cours"].split(" ")
+    var current_challenge = parseInt(tmp_array[tmp_array.length -1])
+
+    while (blocks[i] + tmp < current_challenge) {
+      tmp += blocks[i]
+      i += 1
+    }
+    var current_challenge_block = i +1
+
+    if (displayed_challenge_block > current_challenge_block) {
+        document.getElementById("submit_defi").style.display = "none"
+        document.getElementById("submit_defi_responsive").style.display = "none"
+    }
+  })
+	
+}
+
 </script>
 
 <script>
@@ -114,5 +147,6 @@ checkIfLessonCompleted()
 checkCompletedLessons()
 
 updateChallengesDisplay()
+hideFormButton()
 
 </script>
