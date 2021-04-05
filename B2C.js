@@ -14,7 +14,7 @@ function setDefaultMetadataValues() {
   console.log("First co, setting up default values...");
   MemberStack.onReady.then(function(member) {
     var memberProgress = {
-      completedLessons: [],
+      checkedTodoItems: [],
       firstCo: "false"
     }
     member.updateMetaData(memberProgress)
@@ -135,6 +135,8 @@ MemberStack.onReady.then(function(member) {
   })
 	
 }
+
+
 
 </script>
 
