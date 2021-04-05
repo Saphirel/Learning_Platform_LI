@@ -1,3 +1,5 @@
+<script>
+
 function setupIfFirstConnection() {
   console.log("Checking first co...");
 
@@ -55,3 +57,5 @@ function presetForm() {
 
 setupIfFirstConnection()
 getCurrentChallenge()
+
+</script>
