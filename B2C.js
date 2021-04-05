@@ -136,6 +136,59 @@ MemberStack.onReady.then(function(member) {
 	
 }
 
+function setOnClickListeners() {
+    var items = document.getElementsByClassName("div-block-193")
+
+    for (var i = 0; i < items.length; ++i) {
+        var tmp = items[i]
+        tmp.getElementsByClassName("div-block-194")[0].addEventListener("click", function() {
+            var item_id = this.parentNode.parentNode.getElementsByClassName("text-block-87")[0].innerHTML
+
+            MemberStack.onReady.then(async function(member) {
+                var metadata = await member.getMetaData();
+
+                if (res = (typeof metadata["checkedTodoItems"] == 'undefined'))
+                    var todo_items = []
+                else
+                    var todo_items = metadata["checkedTodoItems"];
+
+                todo_items.push(item_id)
+
+                var data = {
+                  checkedTodoItems: todo_items
+                }
+                member.updateMetaData(data)
+            })
+
+        })
+    }
+}
+
+function getTodoElementById(id) {
+    var items = document.getElementsByClassName("div-block-193")
+
+    for (var i = 0; i < items.length; ++i) {
+        var tmp = items[i].getElementsByClassName("div-block-194")[0]
+        var item_id = tmp.parentNode.parentNode.getElementsByClassName("text-block-87")[0].innerHTML
+        if (item_id == id)
+            return tmp
+    }
+    return null
+}
+
+function checkCheckedItems() {
+    MemberStack.onReady.then(async function(member) {
+        var metadata = await member.getMetaData();
+
+        if (res = (typeof metadata["checkedTodoItems"] != 'undefined')) {
+            var todo_items = metadata["checkedTodoItems"];
+            for (var i = 0; i < todo_items.length; ++i) {
+                getTodoElementById(todo_items[i]).classList.add("checked")
+            }
+        }
+    })
+}
+
 
 
 </script>
@@ -150,5 +203,8 @@ checkCompletedLessons()
 
 updateChallengesDisplay()
 hideFormButton()
+
+checkCheckedItems()
+setOnClickListeners()
 
 </script>
