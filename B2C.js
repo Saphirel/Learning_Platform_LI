@@ -77,6 +77,32 @@ function checkCompletedLessons() {
   })
 }
 
+function updateChallengesDisplay() {
+	var tmp = []
+	for (var i = 1; i < 6; ++i) {
+	    tmp[i -1] = document.getElementById("bloc_" + i)
+	}
+
+var found_ongoing_challenge = false
+
+MemberStack.onReady.then(function(member) {
+    var challenge_name = member["dfi-en-cours"].split(" ").join("&nbsp;")
+    for (var i = 0; i < tmp.length; ++i) {
+        if (tmp[i].innerHTML.includes(challenge_name)) {
+           found_ongoing_challenge = true
+        } else {
+            if (found_ongoing_challenge) {
+                var challenges = tmp[i].getElementsByClassName("container-defi-et-detail")
+                for (var j = 0; j < challenges.length; ++j) {
+                    challenges[j].classList.add("unavailable")
+                }
+            }
+        }
+        
+    }
+  })
+}
+
 </script>
 
 <script>
@@ -86,5 +112,7 @@ getCurrentChallenge()
 
 checkIfLessonCompleted()
 checkCompletedLessons()
+
+updateChallengesDisplay()
 
 </script>
