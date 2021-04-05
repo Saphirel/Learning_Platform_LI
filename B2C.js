@@ -158,6 +158,7 @@ function setOnClickListeners() {
                   checkedTodoItems: todo_items
                 }
                 member.updateMetaData(data)
+		checkCheckedItems()
             })
 
         })
