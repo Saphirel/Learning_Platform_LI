@@ -88,7 +88,7 @@ var found_ongoing_challenge = false
 MemberStack.onReady.then(function(member) {
     var challenge_name = member["dfi-en-cours"].split(" ").join("&nbsp;")
     for (var i = 0; i < tmp.length; ++i) {
-        if (tmp[i].innerHTML.includes(challenge_name)) {
+        if (tmp[i].innerHTML.includes(challenge_name) && !found_ongoing_challenge) {
            found_ongoing_challenge = true
         } else {
             if (found_ongoing_challenge) {
