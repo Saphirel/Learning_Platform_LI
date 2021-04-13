@@ -52,12 +52,14 @@ function presetForm() {
 function checkIfLessonCompleted() {
 	MemberStack.onReady.then(function(member) {   
 	  if (member.loggedIn) {
-	    var lessons = member["cours-finis"].split(", ")
-	    var current_lesson = document.getElementById("cours_id").innerHTML
-	    if (lessons.includes(current_lesson)) {
-	      document.getElementById("cta_terminer").style.display = "none"
-	      document.getElementById("cours_ok").style.display = "block"
-	    }
+		  if (!(member["cours-finis"] === undefined)) {
+		    var lessons = member["cours-finis"].split(", ")
+		    var current_lesson = document.getElementById("cours_id").innerHTML
+		    if (lessons.includes(current_lesson)) {
+		      document.getElementById("cta_terminer").style.display = "none"
+		      document.getElementById("cours_ok").style.display = "block"
+		    }
+		  }
 	 }
   })
 }
