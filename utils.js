@@ -4,7 +4,7 @@ function checkCompletedDefis() {
 	  if (member.loggedIn) {
 	    var defis = member["defis-termines"].split(", ")
             for (var i = 0; i < defis.length; ++i) {
-              document.getElementById("defi_"+ defis[i]).className += "rendu"            }
+              document.getElementById("defi_"+ defis[i]).className += "rendu"
             }
 	 }
   })
